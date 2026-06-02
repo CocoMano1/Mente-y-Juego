@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mente y Juego | Psicopedagogía y Neurodesarrollo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Quicksand:wght=400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -68,72 +68,109 @@
             font-weight: 700;
         }
 
-        /* CARA DEL ZORRITO GEOMÉTRICA CSS (Mejorada para resolución y estabilidad) */
-        .fox-logo-container {
+        /* --- NUEVO CONTENEDOR DEL ZORRITO SIMILAR AL LOGO REAL --- */
+        .fox-avatar-circle {
+            position: relative;
             width: 50px;
             height: 50px;
+            background-color: #F5CBB0; /* Fondo beige del círculo interno */
             border-radius: 50%;
-            border: 2px solid var(--accent-orange);
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--white);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-            position: relative;
+            overflow: hidden;
+            border: 1.5px dotted #9E7D66; /* Simulación del borde punteado del logo */
         }
 
-        /* Ilustración CSS nativa y geométrica del zorrito */
-        .fox-face-geometric {
+        .fox-body-spec {
             position: relative;
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
+            margin-top: 8px;
+        }
+
+        /* Orejas redondeadas con contorno oscuro */
+        .fox-ear-spec-l, .fox-ear-spec-r {
+            position: absolute;
+            top: -4px;
+            width: 12px;
+            height: 16px;
             background-color: var(--accent-orange);
-            border-radius: 50%;
-            border: 2px solid #FFF;
+            border: 2px solid #2B2B2B;
+            border-radius: 10px 10px 0 0;
+        }
+        .fox-ear-spec-l { left: 4px; transform: rotate(-15deg); }
+        .fox-ear-spec-r { right: 4px; transform: rotate(15deg); }
+
+        /* Estructura principal de la cabeza */
+        .fox-head-spec {
+            position: absolute;
+            width: 38px;
+            height: 28px;
+            background-color: var(--accent-orange);
+            border-radius: 14px 14px 18px 18px;
+            bottom: 4px;
+            overflow: hidden;
         }
 
-        .fox-ear-l, .fox-ear-r {
+        /* Copete del logo */
+        .fox-tuft-spec {
             position: absolute;
-            top: -2px;
-            width: 0;
-            height: 0;
-            border-style: solid;
-        }
-        .fox-ear-l {
-            left: 2px;
-            border-width: 0 16px 16px 0;
-            border-color: transparent #C95A3E transparent transparent;
-            transform: rotate(-15deg);
-        }
-        .fox-ear-r {
-            right: 2px;
-            border-width: 0 0 16px 16px;
-            border-color: transparent transparent transparent #C95A3E;
-            transform: rotate(15deg);
-        }
-
-        .fox-eye-l, .fox-eye-r {
-            position: absolute;
-            top: 18px;
-            width: 5px;
-            height: 5px;
-            background-color: #222222;
-            border-radius: 50%;
-        }
-        .fox-eye-l { left: 12px; }
-        .fox-eye-r { right: 12px; }
-
-        .fox-nose-center {
-            position: absolute;
-            bottom: 8px;
+            top: 2px;
             left: 50%;
             transform: translateX(-50%);
-            width: 8px;
-            height: 6px;
-            background-color: #222222;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 5px solid var(--accent-orange);
+            z-index: 3;
+        }
+
+        /* Mejillas blancas curvas características */
+        .fox-cheeks-spec {
+            position: absolute;
+            bottom: -2px;
+            width: 100%;
+            height: 16px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1;
+        }
+        .fox-cheeks-spec::before, .fox-cheeks-spec::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: #FFFDF4;
+            border-radius: 50%;
+        }
+        .fox-cheeks-spec::before { transform: translate(-3px, 0); }
+        .fox-cheeks-spec::after { transform: translate(3px, 0); }
+
+        /* Ojos expresivos del logo */
+        .fox-eye-spec-l, .fox-eye-spec-r {
+            position: absolute;
+            top: 10px;
+            width: 4.5px;
+            height: 4.5px;
+            background-color: #2B2B2B;
             border-radius: 50%;
             z-index: 2;
+        }
+        .fox-eye-spec-l { left: 9px; }
+        .fox-eye-spec-r { right: 9px; }
+
+        /* Nariz y hocico en el centro */
+        .fox-nose-spec {
+            position: absolute;
+            bottom: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 4px;
+            background-color: #2B2B2B;
+            border-radius: 50%;
+            z-index: 3;
         }
 
         nav ul {
@@ -161,7 +198,7 @@
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 50px; /* Espaciado generoso entre secciones */
+            gap: 50px;
         }
 
         section {
@@ -172,7 +209,6 @@
             border: 1px solid #F5EFEA;
         }
 
-        /* Ajuste específico para destacar el Hero Banner */
         .hero-section {
             background-color: var(--bg-apricot);
             border: none;
@@ -193,7 +229,6 @@
             font-weight: 500;
         }
 
-        /* Tarjetas de Beneficios Fluyendo Verticalmente */
         .benefits-vertical {
             display: flex;
             flex-direction: column;
@@ -226,7 +261,6 @@
             color: #444444;
         }
 
-        /* Estilos de portafolio de servicios vertical */
         .services-vertical {
             display: flex;
             flex-direction: column;
@@ -270,7 +304,7 @@
             color: var(--text-muted);
         }
 
-        /* Sección de Instagram simulada vertical */
+        /* --- SECCIÓN INSTAGRAM --- */
         .instagram-vertical-box {
             border: 1px solid #EAEAEA;
             border-radius: 20px;
@@ -305,7 +339,7 @@
             display: flex;
         }
 
-        /* BOTÓN DE COMUNIDAD: Redirige internamente */
+        /* BOTÓN DE COMUNIDAD REDIRECCIONADO INTERNAMENTE */
         .insta-follow-btn {
             background-color: #0095f6;
             color: var(--white);
@@ -314,23 +348,13 @@
             border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 700;
-            position: relative;
+            transition: background-color 0.2s;
         }
 
-        /* Nota visual indicando el comportamiento del botón */
-        .insta-follow-btn::after {
-            content: 'Boton de Comunidad: Redirige a sección de Instagram';
-            position: absolute;
-            bottom: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.65rem;
-            color: #666;
-            width: max-content;
-            font-weight: 400;
+        .insta-follow-btn:hover {
+            background-color: #0074c7;
         }
 
-        /* Bloque visual integrativo e interactivo */
         .insta-mosaic-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -350,7 +374,7 @@
         }
         .mosaic-item:hover { opacity: 0.85; }
 
-        /* Canales de Contacto Directo */
+        /* Contacto */
         .contact-vertical-list {
             display: flex;
             flex-direction: column;
@@ -416,13 +440,17 @@
     <header>
         <div class="nav-container">
             <a href="#" class="brand-logo">
-                <div class="fox-logo-container">
-                    <div class="fox-face-geometric">
-                        <div class="fox-ear-l"></div>
-                        <div class="fox-ear-r"></div>
-                        <div class="fox-eye-l"></div>
-                        <div class="fox-eye-r"></div>
-                        <div class="fox-nose-center"></div>
+                <div class="fox-avatar-circle">
+                    <div class="fox-body-spec">
+                        <div class="fox-ear-spec-l"></div>
+                        <div class="fox-ear-spec-r"></div>
+                        <div class="fox-head-spec">
+                            <div class="fox-tuft-spec"></div>
+                            <div class="fox-cheeks-spec"></div>
+                            <div class="fox-eye-spec-l"></div>
+                            <div class="fox-eye-spec-r"></div>
+                            <div class="fox-nose-spec"></div>
+                        </div>
                     </div>
                 </div>
                 <span>Mente y Juego</span>
@@ -431,7 +459,7 @@
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#comunidad-anchor">Comunidad</a></li>
+                    <li><a href="#comunidad">Comunidad</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
@@ -499,7 +527,7 @@
                 <div class="service-item-row">
                     <div class="icon-box"><i class="fa-solid fa-child"></i></div>
                     <div class="service-text">
-                        <h4>Atención Clínica Infantil</h4>
+                        <h4>Atención Clinical Infantil</h4>
                         <p>Espacio psicoterapéutico enfocado en brindar contención, evaluación y soporte a las necesidades emocionales.</p>
                     </div>
                 </div>
@@ -522,21 +550,21 @@
             </div>
         </section>
 
-        <a id="comunidad-anchor">
-            <p style="text-align: center; font-size: 0.65rem; color: #999; margin-bottom: 2px;">Ancla: Sección de Instagram</p>
-        </a>
         <section class="instagram-vertical-box" id="comunidad">
             <div class="insta-profile-bar">
                 <div class="insta-user-info">
                     <div class="insta-logo-circle">
                         <div class="insta-logo-inner">
-                            <div class="fox-logo-container" style="width:34px; height:34px; border:none; box-shadow:none;">
-                                <div class="fox-face-geometric" style="width:26px; height:26px;">
-                                    <div class="fox-ear-l" style="top:-3px; border-width: 0 10px 10px 0;"></div>
-                                    <div class="fox-ear-r" style="top:-3px; border-width: 0 0 10px 10px;"></div>
-                                    <div class="fox-eye-l" style="top:12px; width:4px; height:4px; left:8px;"></div>
-                                    <div class="fox-eye-r" style="top:12px; width:4px; height:4px; right:8px;"></div>
-                                    <div class="fox-nose-center" style="bottom:5px; width:6px; height:4px;"></div>
+                            <div class="fox-avatar-circle" style="width: 36px; height: 36px; border: none;">
+                                <div class="fox-body-spec" style="width: 28px; height: 28px; margin-top: 5px;">
+                                    <div class="fox-ear-spec-l" style="width: 9px; height: 12px; top: -3px; left: 3px;"></div>
+                                    <div class="fox-ear-spec-r" style="width: 9px; height: 12px; top: -3px; right: 3px;"></div>
+                                    <div class="fox-head-spec" style="width: 28px; height: 22px; border-radius: 10px 10px 14px 14px;">
+                                        <div class="fox-cheeks-spec" style="height: 12px;"><div style="width:14px; height:14px;"></div><div style="width:14px; height:14px;"></div></div>
+                                        <div class="fox-eye-spec-l" style="width: 3.5px; height: 3.5px; top: 7px; left: 7px;"></div>
+                                        <div class="fox-eye-spec-r" style="width: 3.5px; height: 3.5px; top: 7px; right: 7px;"></div>
+                                        <div class="fox-nose-spec" style="width: 4px; height: 3px; bottom: 1px;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -546,14 +574,15 @@
                         <p style="font-size: 0.8rem; color: #8E8E8E;">Mente y Juego • Comunidad Educativa</p>
                     </div>
                 </div>
-                <a href="#comunidad-anchor" class="insta-follow-btn">Seguir</a>
+                <a href="#comunidad" class="insta-follow-btn">Seguir</a>
             </div>
 
             <div class="insta-mosaic-row">
-                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #E3F2FD; color: #1E88E5;"><i class="fa-solid fa-shapes"></i></a>
-                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #FFF3E0; color: #E65100;"><i class="fa-solid fa-star"></i></a>
-                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #E8F5E9; color: #2E7D32;"><i class="fa-solid fa-palette"></i></a>
+                <div class="mosaic-item" style="background-color: #E3F2FD; color: #1E88E5;"><i class="fa-solid fa-shapes"></i></div>
+                <div class="mosaic-item" style="background-color: #FFF3E0; color: #E65100;"><i class="fa-solid fa-star"></i></div>
+                <div class="mosaic-item" style="background-color: #E8F5E9; color: #2E7D32;"><i class="fa-solid fa-palette"></i></div>
             </div>
+
             <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
                 Aliméntate diariamente con nuestras ideas pedagógicas y actividades prácticas.
             </p>
@@ -564,12 +593,12 @@
             <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">Si tienes inquietudes o deseas agendar una cita, asesoría o taller, comunícate directamente:</p>
             
             <div class="contact-vertical-list">
-                <a href="https://wa.me/573332268690" target="_blank" class="contact-link-new contact-btn-link">
+                <a href="https://wa.me/573332268690" target="_blank" class="contact-btn-link">
                     <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
                     <span>WhatsApp: 333 226 8690</span>
                 </a>
 
-                <a href="mailto:menteyjuegodiversion@gmail.com" class="contact-link-new contact-btn-link">
+                <a href="mailto:menteyjuegodiversion@gmail.com" class="contact-btn-link">
                     <i class="fa-solid fa-envelope" style="color: #4A90E2;"></i>
                     <span>menteyjuegodiversion@gmail.com</span>
                 </a>
