@@ -68,7 +68,7 @@
             font-weight: 700;
         }
 
-        /* CONTENEDOR OPTIMIZADO PARA LA IMAGEN DEL ZORRITO */
+        /* CARA DEL ZORRITO GEOMÉTRICA CSS (Mejorada para resolución y estabilidad) */
         .fox-logo-container {
             width: 50px;
             height: 50px;
@@ -80,12 +80,60 @@
             justify-content: center;
             background-color: var(--white);
             box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+            position: relative;
         }
 
-        .fox-logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        /* Ilustración CSS nativa y geométrica del zorrito */
+        .fox-face-geometric {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-orange);
+            border-radius: 50%;
+            border: 2px solid #FFF;
+        }
+
+        .fox-ear-l, .fox-ear-r {
+            position: absolute;
+            top: -2px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .fox-ear-l {
+            left: 2px;
+            border-width: 0 16px 16px 0;
+            border-color: transparent #C95A3E transparent transparent;
+            transform: rotate(-15deg);
+        }
+        .fox-ear-r {
+            right: 2px;
+            border-width: 0 0 16px 16px;
+            border-color: transparent transparent transparent #C95A3E;
+            transform: rotate(15deg);
+        }
+
+        .fox-eye-l, .fox-eye-r {
+            position: absolute;
+            top: 18px;
+            width: 5px;
+            height: 5px;
+            background-color: #222222;
+            border-radius: 50%;
+        }
+        .fox-eye-l { left: 12px; }
+        .fox-eye-r { right: 12px; }
+
+        .fox-nose-center {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 6px;
+            background-color: #222222;
+            border-radius: 50%;
+            z-index: 2;
         }
 
         nav ul {
@@ -257,6 +305,7 @@
             display: flex;
         }
 
+        /* BOTÓN DE COMUNIDAD: Redirige internamente */
         .insta-follow-btn {
             background-color: #0095f6;
             color: var(--white);
@@ -265,7 +314,41 @@
             border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 700;
+            position: relative;
         }
+
+        /* Nota visual indicando el comportamiento del botón */
+        .insta-follow-btn::after {
+            content: 'Boton de Comunidad: Redirige a sección de Instagram';
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            color: #666;
+            width: max-content;
+            font-weight: 400;
+        }
+
+        /* Bloque visual integrativo e interactivo */
+        .insta-mosaic-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .mosaic-item {
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .mosaic-item:hover { opacity: 0.85; }
 
         /* Canales de Contacto Directo */
         .contact-vertical-list {
@@ -334,7 +417,13 @@
         <div class="nav-container">
             <a href="#" class="brand-logo">
                 <div class="fox-logo-container">
-                    <img src="WhatsApp Image 2026-03-10 at 7.32.50 PM.jpeg" alt="Logo Zorrito Mente y Juego">
+                    <div class="fox-face-geometric">
+                        <div class="fox-ear-l"></div>
+                        <div class="fox-ear-r"></div>
+                        <div class="fox-eye-l"></div>
+                        <div class="fox-eye-r"></div>
+                        <div class="fox-nose-center"></div>
+                    </div>
                 </div>
                 <span>Mente y Juego</span>
             </a>
@@ -342,7 +431,7 @@
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#comunidad">Comunidad</a></li>
+                    <li><a href="#comunidad-anchor">Comunidad</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
@@ -433,13 +522,22 @@
             </div>
         </section>
 
+        <a id="comunidad-anchor">
+            <p style="text-align: center; font-size: 0.65rem; color: #999; margin-bottom: 2px;">Ancla: Sección de Instagram</p>
+        </a>
         <section class="instagram-vertical-box" id="comunidad">
             <div class="insta-profile-bar">
                 <div class="insta-user-info">
                     <div class="insta-logo-circle">
                         <div class="insta-logo-inner">
                             <div class="fox-logo-container" style="width:34px; height:34px; border:none; box-shadow:none;">
-                                <img src="WhatsApp Image 2026-03-10 at 7.32.50 PM.jpeg" alt="Mini Logo Zorrito">
+                                <div class="fox-face-geometric" style="width:26px; height:26px;">
+                                    <div class="fox-ear-l" style="top:-3px; border-width: 0 10px 10px 0;"></div>
+                                    <div class="fox-ear-r" style="top:-3px; border-width: 0 0 10px 10px;"></div>
+                                    <div class="fox-eye-l" style="top:12px; width:4px; height:4px; left:8px;"></div>
+                                    <div class="fox-eye-r" style="top:12px; width:4px; height:4px; right:8px;"></div>
+                                    <div class="fox-nose-center" style="bottom:5px; width:6px; height:4px;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -448,9 +546,14 @@
                         <p style="font-size: 0.8rem; color: #8E8E8E;">Mente y Juego • Comunidad Educativa</p>
                     </div>
                 </div>
-                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-follow-btn">Seguir</a>
+                <a href="#comunidad-anchor" class="insta-follow-btn">Seguir</a>
             </div>
 
+            <div class="insta-mosaic-row">
+                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #E3F2FD; color: #1E88E5;"><i class="fa-solid fa-shapes"></i></a>
+                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #FFF3E0; color: #E65100;"><i class="fa-solid fa-star"></i></a>
+                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #E8F5E9; color: #2E7D32;"><i class="fa-solid fa-palette"></i></a>
+            </div>
             <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
                 Aliméntate diariamente con nuestras ideas pedagógicas y actividades prácticas.
             </p>
