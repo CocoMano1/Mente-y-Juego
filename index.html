@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+web_content = """<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,14 +9,16 @@
     
     <style>
         :root {
-            --bg-pastel: #FCE3CD; /* El tono melocotón suave de tu logo */
-            --bg-card-blue: #E2ECF7;
-            --bg-card-green: #E2F0D9;
-            --bg-card-pink: #FCE4E4;
-            --text-dark: #2B2B2B;
+            --bg-apricot: #FCE3CD; /* Melocotón pastel suave */
+            --bg-cream: #FFFDFB;
+            --accent-orange: #E07A5F; /* Naranja zorro */
+            --text-dark: #333333;
             --text-muted: #666666;
-            --accent-orange: #E07A5F;
             --white: #FFFFFF;
+            
+            --card-blue: #E2ECF7;
+            --card-green: #E2F0D9;
+            --card-pink: #FCE4E4;
         }
 
         * {
@@ -28,26 +30,27 @@
         body {
             font-family: 'Quicksand', sans-serif;
             color: var(--text-dark);
-            background-color: #FFFDFB;
+            background-color: var(--bg-cream);
             line-height: 1.6;
         }
 
         h1, h2, h3 {
             font-family: 'Comfortaa', cursive;
             font-weight: 700;
+            text-align: center;
         }
 
-        /* --- BARRA DE NAVEGACIÓN --- */
+        /* --- MENÚ DE NAVEGACIÓN --- */
         header {
             background-color: var(--white);
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -55,322 +58,344 @@
             padding: 15px 20px;
         }
 
-        .logo {
+        .brand-logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
             color: var(--text-dark);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
         }
 
-        /* Silueta geométrica limpia del zorrito Mente y Juego */
-        .fox-logo {
+        /* CARA DEL ZORRITO MEJORADA EN CSS PURO (Alta resolución y claridad) */
+        .fox-face-container {
             position: relative;
-            width: 45px;
-            height: 45px;
-            background-color: #F07143;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-orange);
             border-radius: 50%;
+            border: 2px solid var(--white);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
             overflow: hidden;
-            border: 2px solid #FFF;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .fox-logo::before, .fox-logo::after {
-            content: '';
+
+        .fox-ear-l, .fox-ear-r {
             position: absolute;
-            bottom: 0;
+            top: -2px;
             width: 0;
             height: 0;
             border-style: solid;
         }
-        .fox-logo::before {
-            left: 0;
-            border-width: 0 0 25px 23px;
-            border-color: transparent transparent #FFFDF4 transparent;
+        .fox-ear-l {
+            left: 2px;
+            border-width: 0 16px 16px 0;
+            border-color: transparent #C95A3E transparent transparent;
+            transform: rotate(-15deg);
         }
-        .fox-logo::after {
-            right: 0;
-            border-width: 0 23px 25px 0;
-            border-color: transparent transparent #FFFDF4 transparent;
+        .fox-ear-r {
+            right: 2px;
+            border-width: 0 0 16px 16px;
+            border-color: transparent transparent transparent #C95A3E;
+            transform: rotate(15deg);
         }
-        .fox-nose {
+
+        .fox-cheeks {
             position: absolute;
-            bottom: 6px;
+            bottom: 0;
+            width: 100%;
+            height: 50%;
+            display: flex;
+        }
+        .fox-cheeks::before, .fox-cheeks::after {
+            content: '';
+            flex: 1;
+            background-color: #FFFDF4;
+            border-radius: 50% 50% 0 0;
+        }
+        .fox-cheeks::before { transform: translate(-3px, 2px) rotate(-15deg); }
+        .fox-cheeks::after { transform: translate(3px, 2px) rotate(15deg); }
+
+        .fox-eye-l, .fox-eye-r {
+            position: absolute;
+            top: 20px;
+            width: 5px;
+            height: 5px;
+            background-color: #222222;
+            border-radius: 50%;
+        }
+        .fox-eye-l { left: 14px; }
+        .fox-eye-r { right: 14px; }
+
+        .fox-nose-center {
+            position: absolute;
+            bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 6px;
-            height: 5px;
-            background-color: #2B2B2B;
-            border-radius: 50%;
-            z-index: 2;
+            width: 8px;
+            height: 6px;
+            background-color: #222222;
+            border-radius: 50% 50% 40% 40%;
+            z-index: 10;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 24px;
+            gap: 20px;
         }
 
         nav a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 700;
-            font-size: 0.95rem;
-            transition: color 0.3s;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
 
         nav a:hover {
             color: var(--accent-orange);
         }
 
-        /* --- CONTENEDOR DOS COLUMNAS --- */
-        .main-layout {
-            max-width: 1200px;
-            margin: 40px auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            padding: 0 20px;
-        }
-
-        @media (min-width: 992px) {
-            .main-layout {
-                grid-template-columns: 1.4fr 1fr;
-            }
-        }
-
-        /* --- COLUMNA IZQUIERDA --- */
-        .left-column {
+        /* --- ESTRUCTURA VERTICAL ESTRICTA --- */
+        .vertical-layout {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 50px; /* Espaciado generoso entre secciones */
         }
 
-        .hero-box {
-            background-color: var(--bg-pastel);
-            border-radius: 30px;
+        section {
+            background-color: var(--white);
+            border-radius: 24px;
             padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015);
+            border: 1px solid #F5EFEA;
+        }
+
+        /* Ajuste específico para destacar el Hero Banner */
+        .hero-section {
+            background-color: var(--bg-apricot);
+            border: none;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(240,113,67,0.05);
+            box-shadow: 0 10px 30px rgba(224,122,95,0.06);
         }
 
-        .hero-box h1 {
-            font-size: 1.9rem;
-            color: #413C3A;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .hero-box h2 {
-            font-size: 1.2rem;
-            color: #D36140;
+        .hero-section h1 {
+            font-size: 1.8rem;
+            color: #3D3533;
             margin-bottom: 20px;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 600;
+            line-height: 1.4;
         }
 
-        .hero-box p {
-            font-size: 1.05rem;
-            color: #555;
+        .hero-section p {
+            font-size: 1.1rem;
+            color: #555555;
             font-weight: 500;
         }
 
-        .bio-box {
-            background-color: var(--white);
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid #F1EAE4;
+        /* Tarjetas de Beneficios Fluyendo Verticalmente */
+        .benefits-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .bio-box h3 {
-            margin-bottom: 20px;
-            color: var(--text-dark);
-            font-size: 1.3rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .feature-item {
-            padding: 20px;
+        .benefit-card {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 25px;
             border-radius: 20px;
+        }
+
+        .benefit-card i {
+            font-size: 2.2rem;
+            min-width: 50px;
             text-align: center;
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .feat-blue { background-color: var(--bg-card-blue); }
-        .feat-green { background-color: var(--bg-card-green); }
-        .feat-pink { background-color: var(--bg-card-pink); }
-
-        .feature-item i {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-            display: block;
-        }
-        .feat-blue i { color: #4A90E2; }
-        .feat-green i { color: #70AD47; }
-        .feat-pink i { color: #ED7D31; }
-
-        .feature-item span {
-            font-size: 0.85rem;
-            color: var(--text-dark);
-            display: block;
-            margin-top: 8px;
-            font-weight: 400;
         }
 
-        .services-list {
+        .benefit-card h3 {
+            text-align: left;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .benefit-card p {
+            font-size: 0.95rem;
+            color: #444444;
+        }
+
+        /* Estilos de portafolio de servicios vertical */
+        .services-vertical {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 25px;
         }
 
-        .service-row {
-            background-color: var(--white);
-            padding: 18px;
-            border-radius: 18px;
+        .service-item-row {
+            background-color: var(--bg-cream);
+            padding: 20px;
+            border-radius: 16px;
             border-left: 5px solid var(--accent-orange);
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
         }
 
-        .service-row i {
-            font-size: 1.3rem;
-            color: var(--accent-orange);
-            background: #FFF0EB;
-            padding: 10px;
-            border-radius: 50%;
-        }
-
-        /* --- COLUMNA DERECHA --- */
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .instagram-preview {
+        .service-item-row .icon-box {
             background-color: var(--white);
-            border-radius: 24px;
-            padding: 25px;
-            border: 1px solid #EFEFEF;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            color: var(--accent-orange);
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.02);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 45px;
+            height: 45px;
         }
 
-        .insta-header {
+        .service-text h4 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .service-text p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Sección de Instagram simulada vertical */
+        .instagram-vertical-box {
+            border: 1px solid #EAEAEA;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .insta-profile-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #F5F5F5;
+            padding-bottom: 15px;
         }
 
-        .insta-profile {
+        .insta-user-info {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .insta-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
+        .insta-logo-circle {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            padding: 2px;
+            padding: 3px;
+            border-radius: 50%;
         }
 
-        .insta-avatar-inner {
-            background-color: #fff;
-            width: 100%;
-            height: 100%;
+        .insta-logo-inner {
+            background: #fff;
+            padding: 2px;
             border-radius: 50%;
             display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .insta-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .insta-btn {
+        .insta-follow-btn {
             background-color: #0095f6;
-            color: #fff;
-            padding: 6px 16px;
-            border-radius: 8px;
+            color: var(--white);
             text-decoration: none;
+            padding: 6px 18px;
+            border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 700;
         }
 
-        .insta-grid {
+        /* Bloque visual integrativo e interactivo */
+        .insta-mosaic-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
-        .insta-post {
+        .mosaic-item {
             aspect-ratio: 1 / 1;
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: opacity 0.2s;
+            font-size: 1.5rem;
             text-decoration: none;
+            transition: opacity 0.2s;
         }
-        .insta-post:hover { opacity: 0.8; }
-        
-        .post-1 { background-color: #E3F2FD; color: #1E88E5; }
-        .post-2 { background-color: #FCE4E4; color: #E53935; }
-        .post-3 { background-color: #E8F5E9; color: #43A047; }
-        .post-4 { background-color: #FFF8E1; color: #FFB300; }
-        .post-5 { background-color: #F3E5F5; color: #8E24AA; }
-        .post-6 { background-color: #E0F2F1; color: #00897B; }
+        .mosaic-item:hover { opacity: 0.85; }
 
-        .contact-box {
-            background: linear-gradient(135deg, #FFF5EE 0%, #FCE3CD 100%);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
+        /* Canales de Contacto Directo */
+        .contact-vertical-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
         }
 
-        .contact-box h3 { margin-bottom: 20px; }
-
-        .contact-link {
+        .contact-btn-link {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
             background-color: var(--white);
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin-bottom: 12px;
+            border: 2px solid var(--bg-apricot);
+            padding: 16px;
+            border-radius: 16px;
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            transition: transform 0.2s;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
         }
-        .contact-link:hover { transform: translateY(-2px); }
-        .contact-link i { font-size: 1.3rem; color: var(--accent-orange); }
+
+        .contact-btn-link:hover {
+            background-color: var(--bg-apricot);
+            transform: translateY(-2px);
+        }
+
+        .contact-btn-link i {
+            font-size: 1.4rem;
+            color: var(--accent-orange);
+        }
+
+        .section-header-title {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .section-header-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-orange);
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
 
         footer {
+            text-align: center;
+            padding: 40px 20px;
             background-color: var(--white);
             border-top: 1px solid #EFEFEF;
-            text-align: center;
-            padding: 25px;
-            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-top: 50px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -378,133 +403,167 @@
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="fox-logo"><div class="fox-nose"></div></div>
+            <a href="#" class="brand-logo">
+                <div class="fox-face-container">
+                    <div class="fox-ear-l"></div>
+                    <div class="fox-ear-r"></div>
+                    <div class="fox-cheeks"></div>
+                    <div class="fox-eye-l"></div>
+                    <div class="fox-eye-r"></div>
+                    <div class="fox-nose-center"></div>
+                </div>
                 <span>Mente y Juego</span>
             </a>
             <nav>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#instagram">Instagram</a></li>
+                    <li><a href="#comunidad">Comunidad</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="main-layout" id="inicio">
+    <main class="vertical-layout" id="inicio">
         
-        <div class="left-column">
-            
-            <div class="hero-box">
-                <h1>¿Te imaginas aprender, crecer y divertirte al mismo tiempo?</h1>
-                <h2>En Mente y Juego creemos que el desarrollo personal y el aprendizaje son más efectivos cuando se viven como una experiencia dinámica y entretenida.</h2>
-                <p>Ofrecemos espacios diseñados para estimular la creatividad, fortalecer habilidades cognitivas y promover el bienestar emocional a través del juego y actividades interactivas.</p>
-            </div>
+        <section class="hero-section">
+            <h1>¿Te imaginas aprender, crecer y divertirte al mismo tiempo?</h1>
+            <p>En Mente y Juego creemos que el desarrollo personal y el aprendizaje son más efectivos cuando se viven como una experiencia dinámica y entretenida.</p>
+            <p style="margin-top: 15px; font-size: 1rem; color: #666;">Ofrecemos espacios diseñados para estimular la creatividad, fortalecer habilidades cognitivas y promover el bienestar emocional a través del juego y actividades interactivas.</p>
+        </section>
 
-            <div class="bio-box">
-                <h3>¿Qué encontrarás con nosotros?</h3>
-                <div class="features-grid">
-                    <div class="feature-item feat-blue">
-                        <i class="fa-solid fa-puzzle-piece"></i>
-                        Actividades lúdicas
-                        <span>...que potencian el aprendizaje</span>
-                    </div>
-                    <div class="feature-item feat-green">
-                        <i class="fa-solid fa-brain"></i>
-                        Estrategias de mente
-                        <span>...para mejorar la concentración y la memoria</span>
-                    </div>
-                    <div class="feature-item feat-pink">
-                        <i class="fa-solid fa-heart"></i>
-                        Experiencias únicas
-                        <span>...que conectan mente, emoción y diversión</span>
-                    </div>
-                </div>
-                <p style="text-align: center; font-weight: 700; color: var(--accent-orange); font-size: 1rem; margin-top: 20px;">
-                    Te invitamos a ser parte de esta experiencia única, donde cada juego es una oportunidad para crecer.
-                </p>
-            </div>
-
-            <div class="bio-box" id="servicios">
-                <h3 style="color: var(--accent-orange); font-size: 1.5rem; margin-bottom: 5px;">Sara Cortés</h3>
-                <p style="font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">Psicóloga con Énfasis en Pedagogía Infantil y Neurodesarrollo</p>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Más de 2 años de experiencia liderando el desarrollo feliz de niños y niñas desde los 6 meses hasta los 18 años.</p>
+        <section>
+            <h2 class="section-header-title">¿Qué encontrarás con nosotros?</h2>
+            <div class="benefits-vertical">
                 
-                <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Portafolio de Servicios:</h3>
-                <div class="services-list">
-                    <div class="service-row">
-                        <i class="fa-solid fa-house-chimney"></i>
-                        <div><strong>Neuroestimulación personalizada:</strong> Clases enfocadas a domicilio según el hito de desarrollo.</div>
+                <div class="benefit-card style-blue" style="background-color: var(--card-blue);">
+                    <i class="fa-solid fa-puzzle-piece" style="color: #4A90E2;"></i>
+                    <div>
+                        <h3>Actividades lúdicas</h3>
+                        <p>Estrategias interactivas y dinámicas enfocadas en potenciar el aprendizaje natural.</p>
                     </div>
-                    <div class="service-row">
-                        <i class="fa-solid fa-child-reaching"></i>
-                        <div><strong>Atención clínica psicológica:</strong> Terapia infantil enfocada en su bienestar emocional.</div>
+                </div>
+
+                <div class="benefit-card style-green" style="background-color: var(--card-green);">
+                    <i class="fa-solid fa-brain" style="color: #70AD47;"></i>
+                    <div>
+                        <h3>Estrategias de mente</h3>
+                        <p>Herramientas y metodologías psicopedagógicas para mejorar significativamente la concentración y la memoria.</p>
                     </div>
-                    <div class="service-row">
-                        <i class="fa-solid fa-people-up"></i>
-                        <div><strong>Terapia de familia:</strong> Acompañamiento, pautas de crianza y fortalecimiento del entorno.</div>
+                </div>
+
+                <div class="benefit-card style-pink" style="background-color: var(--card-pink);">
+                    <i class="fa-solid fa-heart-pulse" style="color: #ED7D31;"></i>
+                    <div>
+                        <h3>Experiencias únicas</h3>
+                        <p>Espacios seguros y felices que conectan profundamente la mente, la emoción y la diversión.</p>
                     </div>
-                    <div class="service-row">
-                        <i class="fa-solid fa-cake-candles"></i>
-                        <div><strong>Talleres y Eventos Grupales:</strong> Sesiones especiales y cumpleaños bajo la temática deseada.</div>
+                </div>
+
+            </div>
+            <p style="text-align: center; font-weight: 700; color: var(--accent-orange); margin-top: 25px; font-size: 1.05rem;">
+                ¡Cada juego es una oportunidad única para crecer!
+            </p>
+        </section>
+
+        <section id="servicios">
+            <h2 class="section-header-title">Sara Cortés</h2>
+            <p style="text-align: center; font-weight: 700; color: var(--text-muted); margin-bottom: 5px;">Psicóloga con Énfasis en Pedagogía Infantil y Neurodesarrollo</p>
+            <p style="text-align: center; font-size: 0.95rem; color: #777; margin-bottom: 30px;">Más de 2 años de experiencia dedicados al maravilloso acompañamiento de niños y niñas entre los 6 meses y los 18 años.</p>
+            
+            <h3 style="font-size: 1.1rem; text-align: left; margin-bottom: 15px; font-family: 'Quicksand', sans-serif; font-weight: 700;">Nuestros Servicios Especializados:</h3>
+            
+            <div class="services-vertical">
+                <div class="service-item-row">
+                    <div class="icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+                    <div class="service-text">
+                        <h4>Neuroestimulación a Domicilio</h4>
+                        <p>Clases personalizadas y adaptadas de forma exacta según la etapa madurativa y de crecimiento.</p>
+                    </div>
+                </div>
+
+                <div class="service-item-row">
+                    <div class="icon-box"><i class="fa-solid fa-child"></i></div>
+                    <div class="service-text">
+                        <h4>Atención Clínica Infantil</h4>
+                        <p>Espacio psicoterapéutico enfocado en brindar contención, evaluación y soporte a las necesidades emocionales.</p>
+                    </div>
+                </div>
+
+                <div class="service-item-row">
+                    <div class="icon-box"><i class="fa-solid fa-people-roof"></i></div>
+                    <div class="service-text">
+                        <h4>Terapia de Familia</h4>
+                        <p>Orientación integral y pautas profesionales de crianza para fortalecer los vínculos en el hogar.</p>
+                    </div>
+                </div>
+
+                <div class="service-item-row">
+                    <div class="icon-box"><i class="fa-solid fa-cake-candles"></i></div>
+                    <div class="service-text">
+                        <h4>Talleres y Cumpleaños Grupales</h4>
+                        <p>Sesiones lúdicas grupales desarrolladas a la medida según la temática pedagógica deseada.</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
-
-        <div class="right-column">
-            
-            <div class="instagram-preview" id="instagram">
-                <div class="insta-header">
-                    <div class="insta-profile">
-                        <div class="insta-avatar">
-                            <div class="insta-avatar-inner">
-                                <div class="fox-logo" style="width:32px; height:32px;"><div class="fox-nose" style="bottom:4px;"></div></div>
+        <section class="instagram-vertical-box" id="comunidad">
+            <div class="insta-profile-bar">
+                <div class="insta-user-info">
+                    <div class="insta-logo-circle">
+                        <div class="insta-logo-inner">
+                            <div class="fox-face-container" style="width:34px; height:34px; border:none; box-shadow:none;">
+                                <div class="fox-ear-l" style="top:-3px;"></div>
+                                <div class="fox-ear-r" style="top:-3px;"></div>
+                                <div class="fox-cheeks"></div>
+                                <div class="fox-eye-l" style="top:12px; width:4px; height:4px;"></div>
+                                <div class="fox-eye-r" style="top:12px; width:4px; height:4px;"></div>
+                                <div class="fox-nose-center" style="bottom:5px; width:6px; height:4px;"></div>
                             </div>
                         </div>
-                        <div>
-                            <div class="insta-name">menteyjuego12</div>
-                            <div style="font-size: 0.8rem; color: #8e8e8e;">Mente y Juego</div>
-                        </div>
                     </div>
-                    <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-btn">Seguir</a>
+                    <div>
+                        <h4 style="text-align: left; font-size: 1rem; font-family:'Quicksand', sans-serif;">menteyjuego12</h4>
+                        <p style="font-size: 0.8rem; color: #8E8E8E;">Mente y Juego • Comunidad Educativa</p>
+                    </div>
                 </div>
-                
-                <div class="insta-grid">
-                    <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-post post-1"><i class="fa-solid fa-cubes"></i></a>
-                    <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-post post-2"><i class="fa-solid fa-child"></i></a>
-                    <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-post post-3"><i class="fa-solid fa-hand-holding-heart"></i></a>
-                    <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-post post-4"><i class="fa-solid fa-lightbulb"></i></a>
-                    <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-post post-5"><i class="fa-solid fa-masks-theater"></i></a>
-                    <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-post post-6"><i class="fa-solid fa-star"></i></a>
-                </div>
-                <p style="font-size:0.8rem; color: var(--text-muted); text-align:center; margin-top:15px; font-weight: 600;">
-                    ¡Síguenos en Instagram para ver más consejos lúdicos!
-                </p>
+                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="insta-follow-btn">Seguir</a>
             </div>
 
-            <div class="contact-box" id="contacto">
-                <h3>Contacto Directo</h3>
-                <a href="https://wa.me/573218625892" target="_blank" class="contact-link">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>321 862 58 92</span>
+            <div class="insta-mosaic-row">
+                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #E3F2FD; color: #1E88E5;"><i class="fa-solid fa-shapes"></i></a>
+                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #FFF3E0; color: #E65100;"><i class="fa-solid fa-star"></i></a>
+                <a href="http://instagram.com/menteyjuego12/" target="_blank" class="mosaic-item" style="background-color: #E8F5E9; color: #2E7D32;"><i class="fa-solid fa-palette"></i></a>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
+                Aliméntate diariamente con nuestras ideas pedagógicas y actividades prácticas.
+            </p>
+        </section>
+
+        <section id="contacto">
+            <h2 class="section-header-title">¡Hablemos!</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px;">Si tienes inquietudes o deseas agendar una cita, asesoría o taller, comunícate directamente:</p>
+            
+            <div class="contact-vertical-list">
+                <a href="https://wa.me/573218625892" target="_blank" class="contact-link-new contact-btn-link">
+                    <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+                    <span>WhatsApp: 321 862 58 92</span>
                 </a>
-                <a href="mailto:sariscor99@hotmail.com" class="contact-link">
-                    <i class="fa-solid fa-envelope"></i>
+
+                <a href="mailto:sariscor99@hotmail.com" class="contact-link-new contact-btn-link">
+                    <i class="fa-solid fa-envelope" style="color: #4A90E2;"></i>
                     <span>sariscor99@hotmail.com</span>
                 </a>
             </div>
-
-        </div>
+        </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 Mente y Juego - Diseñado con amor para el neurodesarrollo infantil.</p>
+        <p>&copy; 2026 Mente y Juego - Psicopedagogía & Neurodesarrollo Infantil.</p>
     </footer>
 
 </body>
-</html>
+</html>"""
