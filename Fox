@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mente y Juego | Neurodesarrollo Infantil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --pastel-blue: #E8F0FE;
+            --pastel-green: #E6F4EA;
+            --pastel-yellow: #FEF7E0;
+            --pastel-pink: #FCE8E6;
+            --text-color: #4A4A4A;
+            --accent-orange: #FFAB91; /* Color tierno para detalles del zorrito */
+            --dark-blue: #5C7AEA;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-color);
+            background-color: #FCFBF9;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Comfortaa', cursive;
+            font-weight: 700;
+        }
+
+        /* --- NAV BAR --- */
+        header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent-orange);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--dark-blue);
+        }
+
+        /* --- SECCIÓN 1: PRESENTACIÓN --- */
+        .hero-section {
+            background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-green) 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .avatar-container {
+            width: 150px;
+            height: 150px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 4px solid var(--pastel-yellow);
+        }
+
+        .avatar-container i {
+            font-size: 5rem;
+            color: var(--accent-orange);
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        /* --- SECCIÓN 2: SERVICIOS --- */
+        .services-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .services-section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-orange);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        /* Colores individuales para las tarjetas */
+        .card-1 { border-color: var(--pastel-blue); background-color: rgba(232, 240, 254, 0.3); }
+        .card-2 { border-color: var(--pastel-pink); background-color: rgba(252, 232, 230, 0.3); }
+        .card-3 { border-color: var(--pastel-yellow); background-color: rgba(254, 247, 224, 0.3); }
+        .card-4 { border-color: var(--pastel-green); background-color: rgba(230, 244, 234, 0.3); }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .card-1 .service-icon { color: #4285F4; }
+        .card-2 .service-icon { color: #EA4335; }
+        .card-3 .service-icon { color: #FBBC05; }
+        .card-4 .service-icon { color: #34A853; }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- SECCIÓN 3: CONTACTO --- */
+        .contact-section {
+            background: linear-gradient(135deg, var(--pastel-yellow) 0%, var(--pastel-pink) 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background-color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.03);
+        }
+
+        .contact-item i {
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+        }
+
+        footer {
+            background-color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-fox logo-icon"></i>
+                <span>Mente y Juego</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#presentacion">Conóceme</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="presentacion" class="hero-section">
+        <div class="hero-container">
+            <div class="avatar-container">
+                <i class="fa-solid fa-face-smile-wink"></i>
+            </div>
+            <h1>Sara Cortés</h1>
+            <p class="subtitle">Psicóloga con Énfasis en Pedagogía Infantil y Neurodesarrollo</p>
+            <div class="bio-text">
+                <p>¡Hola! Bienvenidos a <strong>Mente y Juego</strong>. Cuento con más de 2 años de experiencia dedicados al maravilloso trabajo con niños y niñas entre los 6 meses y los 18 años de edad. Mi enfoque se centra en potenciar sus habilidades cognitivas y emocionales a través de estrategias lúdicas y neuroestimulación especializada, acompañando su crecimiento paso a paso.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="services-section">
+        <h2>Nuestros Servicios</h2>
+        <div class="services-grid">
+            
+            <div class="service-card card-1">
+                <div class="service-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                <h3>Neuroestimulación a Domicilio</h3>
+                <p>Clases totalmente personalizadas en la comodidad de tu hogar, diseñadas para potenciar el desarrollo integral de tu hijo/a según su etapa de crecimiento.</p>
+            </div>
+
+            <div class="service-card card-2">
+                <div class="service-icon"><i class="fa-solid fa-child-holding-hands"></i></div>
+                <h3>Atención Clínica Psicológica</h3>
+                <p>Espacio terapéutico especializado para niños, donde abordamos de manera afectiva y profesional sus necesidades emocionales y conductuales.</p>
+            </div>
+
+            <div class="service-card card-3">
+                <div class="service-icon"><div class="service-icon"><i class="fa-solid fa-people-roof"></i></div></div>
+                <h3>Terapia de Familia</h3>
+                <p>Acompañamiento y orientación a los padres y el núcleo familiar, fortaleciendo los vínculos de crianza y la armonía en el hogar.</p>
+            </div>
+
+            <div class="service-card card-4">
+                <div class="service-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <h3>Eventos y Sesiones Grupales</h3>
+                <p>Talleres dinámicos, celebraciones de cumpleaños y sesiones grupales personalizadas según la temática que desees explorar.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+        <div class="contact-container">
+            <h2>¡Hablemos!</h2>
+            <p>Si tienes dudas o deseas agendar una cita o taller, no dudes en ponerte en contacto conmigo.</p>
+            
+            <div class="contact-info">
+                <a href="https://wa.me/573218625892" target="_blank" class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>321 862 58 92</span>
+                </a>
+                
+                <a href="mailto:sariscor99@hotmail.com" class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>sariscor99@hotmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mente y Juego - Diseñado con ❤️ para la neuroestimulación infantil.</p>
+    </footer>
+
+</body>
+</html>
